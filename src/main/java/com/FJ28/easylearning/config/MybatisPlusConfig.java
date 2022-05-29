@@ -1,6 +1,9 @@
 package com.FJ28.easylearning.config;
 
+import com.FJ28.easylearning.entity.User;
 import com.baomidou.mybatisplus.extension.plugins.OptimisticLockerInterceptor;
+import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,6 +19,11 @@ public class MybatisPlusConfig {
 
         return new OptimisticLockerInterceptor();
 
+    }
+
+    //Pagination Plugin
+    public PaginationInterceptor paginationInterceptor(){
+        return new PaginationInterceptor();
     }
 
 }

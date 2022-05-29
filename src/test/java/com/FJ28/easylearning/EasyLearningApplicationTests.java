@@ -2,10 +2,12 @@ package com.FJ28.easylearning;
 
 import com.FJ28.easylearning.entity.User;
 import com.FJ28.easylearning.mapper.UserMapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.Arrays;
 import java.util.List;
 
 @SpringBootTest
@@ -65,6 +67,31 @@ class EasyLearningApplicationTests {
 
 		int result = userMapper.updateById(user);
 		System.out.println("update fail or not:" + result);
+	}
+
+	// multiple ids search
+	@Test
+	public void testSelectDemo1(){
+		List<User> users = userMapper.selectBatchIds(Arrays.asList(1, 2, 3));
+		users.forEach(System.out::println);
+	}
+
+
+	@Test
+	public void testPage() {
+		// 1. create page object
+		// two arguments currentPage and records in each page.
+		Page<User> page = new Page<>(1, 3);
+		// page data will go into page object
+		userMapper.selectPage(page, null);
+
+		// get the data thru page object
+		System.out.println(page.getCurrent()); // current page
+		System.out.println(page.getRecords()); // list of the page
+		System.out.println(page.getSize());
+		System.out.println(page.getPages()); // total pages
+		System.out.println(page.hasNext());
+		System.out.println(page.hasPrevious());
 	}
 
 }
