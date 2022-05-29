@@ -94,4 +94,18 @@ class EasyLearningApplicationTests {
 		System.out.println(page.hasPrevious());
 	}
 
+	@Test
+	public void testLogicDelete(){
+		int result = userMapper.deleteById(1530880097270116353L);
+		System.out.println(result);
+	}
+
+	@Test
+	public void testLogicDeleteSelect(){
+		User user = new User();
+		// the list doesn't include deletedId == 1
+		List<User> users = userMapper.selectList(null);
+		users.forEach(System.out::println);
+	}
+
 }

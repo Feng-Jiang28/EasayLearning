@@ -1,6 +1,8 @@
 package com.FJ28.easylearning.config;
 
 import com.FJ28.easylearning.entity.User;
+import com.baomidou.mybatisplus.core.injector.ISqlInjector;
+import com.baomidou.mybatisplus.extension.injector.LogicSqlInjector;
 import com.baomidou.mybatisplus.extension.plugins.OptimisticLockerInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -25,5 +27,11 @@ public class MybatisPlusConfig {
     public PaginationInterceptor paginationInterceptor(){
         return new PaginationInterceptor();
     }
+
+    @Bean
+    public ISqlInjector sqlInjector(){
+        return new LogicSqlInjector();
+    }
+
 
 }
